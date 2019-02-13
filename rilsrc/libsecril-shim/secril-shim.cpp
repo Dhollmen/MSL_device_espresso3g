@@ -58,7 +58,7 @@ static void onRequestShim(int request, void *data, size_t datalen, RIL_Token t)
 		/* Necessary; RILJ may fake this for us if we reply not supported, but we can just implement it. */
 		case RIL_REQUEST_GET_RADIO_CAPABILITY:
 			onRequestGetRadioCapability(t);
-			RLOGI("%s: got request %s: replied with our implementation!\n", __FUNCTION__, requestToString(request));
+			//RLOGI("%s: got request %s: replied with our implementation!\n", __FUNCTION__, requestToString(request));
 			return;
 		/* The following requests were introduced post-4.3. */
 		case RIL_REQUEST_SIM_TRANSMIT_APDU_BASIC:
@@ -81,12 +81,12 @@ static void onRequestShim(int request, void *data, size_t datalen, RIL_Token t)
 		case RIL_REQUEST_START_LCE:
 		case RIL_REQUEST_STOP_LCE:
 		case RIL_REQUEST_PULL_LCEDATA:
-			RLOGW("%s: got request %s: replied with REQUEST_NOT_SUPPPORTED.\n", __FUNCTION__, requestToString(request));
+			//RLOGW("%s: got request %s: replied with REQUEST_NOT_SUPPPORTED.\n", __FUNCTION__, requestToString(request));
 			rilEnv->OnRequestComplete(t, RIL_E_REQUEST_NOT_SUPPORTED, NULL, 0);
 			return;
 	}
 
-	RLOGD("%s: got request %s: forwarded to RIL.\n", __FUNCTION__, requestToString(request));
+	//RLOGD("%s: got request %s: forwarded to RIL.\n", __FUNCTION__, requestToString(request));
 	origRilFunctions->onRequest(request, data, datalen, t);
 }
 
@@ -219,7 +219,7 @@ static void onRequestCompleteShim(RIL_Token t, RIL_Errno e, void *response, size
 			}
 			break;
 	}
-	RLOGD("%s: got request %s: forwarded to libril.\n", __FUNCTION__, requestToString(request));
+	//RLOGD("%s: got request %s: forwarded to libril.\n", __FUNCTION__, requestToString(request));
 
 null_token_exit:
 	rilEnv->OnRequestComplete(t, e, response, responselen);

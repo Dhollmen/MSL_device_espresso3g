@@ -7,7 +7,7 @@
  */
 
 #define LOG_TAG "RILClient"
-#define LOG_NDEBUG 0
+// #define LOG_NDEBUG 0
 
 #include <binder/Parcel.h>
 #include <telephony/ril.h>
@@ -33,7 +33,7 @@ namespace android {
 //---------------------------------------------------------------------------
 // Defines
 //---------------------------------------------------------------------------
-#define DBG 1
+#define DBG 0
 #define RILD_PORT               7777
 #define MULTI_CLIENT_SOCKET_NAME "Multiclient"
 #define MULTI_CLIENT_Q_SOCKET_NAME "QMulticlient"
@@ -1297,7 +1297,7 @@ static int processUnsolicited(RilClientPrv *prv, Parcel &p) {
         len = 0;
     }
 
-    ALOGD("%s(): resp_id (%d), len(%d)\n", __FUNCTION__, resp_id, len);
+    if (DBG) ALOGD("%s(): resp_id (%d), len(%d)\n", __FUNCTION__, resp_id, len);
 
     if (len)
         data = p.readInplace(len);
