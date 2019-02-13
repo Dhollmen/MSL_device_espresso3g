@@ -1,7 +1,0 @@
-[
-    {
-        "repository": "SlimRoms/device_samsung_espressowifi",
-        "target_path": "device/samsung/espressowifi",
-        "branch": "mm6.0"
-    }
-]
